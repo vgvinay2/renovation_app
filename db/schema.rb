@@ -10,20 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_23_130719) do
+ActiveRecord::Schema.define(version: 2019_07_11_074539) do
 
-  create_table "downloads", force: :cascade do |t|
-    t.string "ip"
-    t.float "latitude"
-    t.float "longitude"
+  create_table "tickets", force: :cascade do |t|
+    t.integer "ticket_number"
+    t.string "comment"
+    t.string "text"
+    t.string "status"
+    t.string "sandbox"
+    t.string "pr"
+    t.string "blocker"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Status Board</h1>
+<div class="index_search">
+  Search by <%= form_tag(users_path, :method => "get", class: "navbar", id: "search-form") do %>
+  <div class="input-append">
+    <%= select_tag(:role, options_for_select(get_user_role, params[:role]), class:"select") %>
+    <%= submit_tag "Filter", name: nil, class:"btn btn-primary" %>
+    <% end %>
+  </div> 
+</div> 
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.role %></td>
+        <td><%#= link_to 'Show', user %></td>
+        <td><%#= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'See all Tickets', tickets_path(id: user) %></td>
+        <!-- <td><%#= link_to 'Create Ticket', new_ticket_path(id: user) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
+<%= link_to 'Back', users_path %>
